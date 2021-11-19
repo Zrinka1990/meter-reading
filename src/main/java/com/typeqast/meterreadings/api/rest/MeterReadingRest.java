@@ -31,22 +31,22 @@ public class MeterReadingRest implements IMeterReadingRest {
 
     @Override
     public void deleteMeterReading(DeleteRequestDto dto) {
-        MeterReadingPrimaryKey pk = converter.meterReadingPrimaryKey(dto);
+        MeterReadingPrimaryKey pk = converter.convertDeleterRequestToMeterReadingPrimaryKey(dto);
         service.delete(pk);
     }
 
     @Override
     public Integer getYearlyMeterReadingAggregate(Long clientId, Short year) {
-        return service.getTotalEnergyConsumptionForYear(clientId, year);
+        return service.fetchTotalEnergyConsumptionForYear(clientId, year);
     }
 
     @Override
     public Map<String, Short> getMeterReadingsPerYear(Long clientId, Short year) {
-        return service.meterReadingPerYear(clientId, year);
+        return service.fetchMeterReadingPerYear(clientId, year);
     }
 
     @Override
     public Map<String, Short> getMeterReadingsPerMonthAndYear(Long clientId, Short year, String month) {
-        return service.meterReadingPerYearAndMonth(clientId, year, month);
+        return service.fetchMeterReadingPerYearAndMonth(clientId, year, month);
     }
 }

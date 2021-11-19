@@ -37,7 +37,7 @@ class MeterServiceTest {
     @Test
     void given_RequestForClientSent_When_MonthlyEnergyConsumptionForYearFetched_Then_ReturnTotalEnergyConsumption() {
         when(meterRepository.getEnergySumForCustomer(client, year)).thenReturn(30);
-        assertThat(meterService.getTotalEnergyConsumptionForYear(client, year)).isEqualTo(30);
+        assertThat(meterService.fetchTotalEnergyConsumptionForYear(client, year)).isEqualTo(30);
     }
 
     @Test
@@ -45,7 +45,7 @@ class MeterServiceTest {
         Set<MeterReading> yearlyMeterReadings = getYearlyMeterReadings();
         when(meterRepository.getAllByClientIdAndYear(client, year)).thenReturn(yearlyMeterReadings);
         Map<String, Short> expectedResult = getExpectedResultForMonthlyReadings();
-        assertThat(meterService.meterReadingPerYear(client, year)).isEqualTo(expectedResult);
+        assertThat(meterService.fetchMeterReadingPerYear(client, year)).isEqualTo(expectedResult);
     }
 
     @Test
@@ -54,7 +54,7 @@ class MeterServiceTest {
         MeterReading meter = new MeterReading(month, year, 21, client);
         when(meterRepository.getByClientIdAndYearAndMonth(client, year, month)).thenReturn(meter);
         Map<String, Short> expectedResult = getExpectedResultForOneMonthReading();
-        assertThat(meterService.meterReadingPerYearAndMonth(client, year, month)).isEqualTo(expectedResult);
+        assertThat(meterService.fetchMeterReadingPerYearAndMonth(client, year, month)).isEqualTo(expectedResult);
     }
 
     private Set<MeterReading> getYearlyMeterReadings() {

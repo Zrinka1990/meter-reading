@@ -28,18 +28,18 @@ public class MeterReadingFetcher {
         meterRepository.deleteById(pk);
     }
 
-    public Integer getTotalEnergyConsumptionForYear(Long clientId, Short year) {
+    public Integer fetchTotalEnergyConsumptionForYear(Long clientId, Short year) {
         return meterRepository.getEnergySumForCustomer(clientId, year);
     }
 
-    public Map<String, Short> meterReadingPerYear(Long clientId, Short year) {
+    public Map<String, Short> fetchMeterReadingPerYear(Long clientId, Short year) {
         Set<MeterReading> meters = meterRepository.getAllByClientIdAndYear(clientId, year);
-        return convertReadingPerYear(year, meters);
+        return getReadingPerYearMap(year, meters);
     }
 
-    public Map<String, Short> meterReadingPerYearAndMonth(Long clientId, Short year, String month) {
+    public Map<String, Short> fetchMeterReadingPerYearAndMonth(Long clientId, Short year, String month) {
         MeterReading meter = meterRepository.getByClientIdAndYearAndMonth(clientId, year, month);
-        return getMap(meter);
+        return getReadingsPerMonthAndYearMap(meter);
     }
 
     private void checkIfValidMonthProvided(String month) {
@@ -50,7 +50,7 @@ public class MeterReadingFetcher {
         }
     }
 
-    private Map<String, Short> convertReadingPerYear(Short year, Set<MeterReading> meterSet) {
+    private Map<String, Short> getReadingPerYearMap(Short year, Set<MeterReading> meterSet) {
         Map<String, Short> map = new LinkedHashMap<>();
         map.put("year", year);
 
@@ -61,7 +61,7 @@ public class MeterReadingFetcher {
         return map;
     }
 
-    private Map<String, Short> getMap(MeterReading meter) {
+    private Map<String, Short> getReadingsPerMonthAndYearMap(MeterReading meter) {
         Map<String, Short> map = new LinkedHashMap<>();
         map.put("year", meter.getYear());
         map.put(meter.getMonth(), Short.valueOf(meter.getEnergyConsumptionKwH().toString()));

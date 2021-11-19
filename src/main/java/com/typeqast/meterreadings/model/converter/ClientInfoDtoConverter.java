@@ -11,7 +11,6 @@ public class ClientInfoDtoConverter {
         ClientInfo client = new ClientInfo();
         client.setClientName(dto.getClientName());
         client.setAddress(createAddressFromDto(dto).getFullAddress());
-
         return client;
     }
 

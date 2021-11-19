@@ -16,12 +16,11 @@ public class MeterReadingDtoConverter {
                 dto.getClientId());
     }
 
-    public MeterReadingPrimaryKey meterReadingPrimaryKey(DeleteRequestDto dto) {
+    public MeterReadingPrimaryKey convertDeleterRequestToMeterReadingPrimaryKey(DeleteRequestDto dto) {
         MeterReadingPrimaryKey pk = new MeterReadingPrimaryKey();
-            pk.setMonth(dto.getMonth());
-            pk.setYear(dto.getYear());
-            pk.setClientId(dto.getClientId());
-
+        pk.setMonth(dto.getMonth());
+        pk.setYear(dto.getYear());
+        pk.setClientId(dto.getClientId());
         return pk;
     }
 }
