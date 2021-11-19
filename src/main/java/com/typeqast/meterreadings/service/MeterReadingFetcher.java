@@ -2,7 +2,8 @@ package com.typeqast.meterreadings.service;
 
 import com.typeqast.meterreadings.exception.InvalidMonthFormatException;
 import com.typeqast.meterreadings.model.MeterReading;
-import com.typeqast.meterreadings.repository.MeterRepository;
+import com.typeqast.meterreadings.model.MeterReadingPrimaryKey;
+import com.typeqast.meterreadings.repository.MeterReadingRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.Month;
@@ -12,15 +13,19 @@ import java.util.Set;
 
 @Service
 public class MeterReadingFetcher {
-    private final MeterRepository meterRepository;
+    private final MeterReadingRepository meterRepository;
 
-    public MeterReadingFetcher(MeterRepository meterRepository) {
+    public MeterReadingFetcher(MeterReadingRepository meterRepository) {
         this.meterRepository = meterRepository;
     }
 
     public void create(MeterReading meter) {
         checkIfValidMonthProvided(meter.getMonth());
         meterRepository.save(meter);
+    }
+
+    public void delete(MeterReadingPrimaryKey pk) {
+        meterRepository.deleteById(pk);
     }
 
     public Integer getTotalEnergyConsumptionForYear(Long clientId, Short year) {

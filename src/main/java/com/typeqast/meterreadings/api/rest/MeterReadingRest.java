@@ -1,8 +1,10 @@
 package com.typeqast.meterreadings.api.rest;
 
 import com.typeqast.meterreadings.api.rest.restinterface.IMeterReadingRest;
+import com.typeqast.meterreadings.dto.DeleteRequestDto;
 import com.typeqast.meterreadings.dto.MeterRequestDto;
 import com.typeqast.meterreadings.model.MeterReading;
+import com.typeqast.meterreadings.model.MeterReadingPrimaryKey;
 import com.typeqast.meterreadings.model.converter.MeterReadingDtoConverter;
 import com.typeqast.meterreadings.service.MeterReadingFetcher;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,12 @@ public class MeterReadingRest implements IMeterReadingRest {
         MeterReading meter = converter.convertRequestDtoMeter(dto);
         service.create(meter);
     }
+
+//    @Override
+//    public void deleteMeterReading(DeleteRequestDto dto) {
+//        MeterReadingPrimaryKey pk = converter.meterReadingPrimaryKey(dto);
+//        service.delete(pk);
+//    }
 
     @Override
     public Integer getYearlyMeterReadingAggregate(Long clientId, Short year) {

@@ -2,7 +2,7 @@ package com.typeqast.meterreadings.service;
 
 import com.typeqast.meterreadings.MeterReadingsApplication;
 import com.typeqast.meterreadings.model.MeterReading;
-import com.typeqast.meterreadings.repository.MeterRepository;
+import com.typeqast.meterreadings.repository.MeterReadingRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -27,7 +27,7 @@ class MeterServiceTest {
     private final Short year = (short) 2018;
 
     @Mock
-    private MeterRepository meterRepository;
+    private MeterReadingRepository meterRepository;
 
     @BeforeEach
     void setUp() {
