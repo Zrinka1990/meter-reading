@@ -1,6 +1,5 @@
 package com.typeqast.meterreadings.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -25,5 +24,5 @@ public class ClientInfo {
     private String address;
 
     @OneToMany(mappedBy = "clientId")
-    private Set<Meter> meter;
+    private Set<MeterReading> meter;
 }

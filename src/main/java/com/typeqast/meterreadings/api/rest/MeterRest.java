@@ -2,7 +2,7 @@ package com.typeqast.meterreadings.api.rest;
 
 import com.typeqast.meterreadings.api.rest.restinterface.IMeterRest;
 import com.typeqast.meterreadings.dto.MeterRequestDto;
-import com.typeqast.meterreadings.model.Meter;
+import com.typeqast.meterreadings.model.MeterReading;
 import com.typeqast.meterreadings.model.converter.MeterReadingDtoConverter;
 import com.typeqast.meterreadings.service.MeterService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class MeterRest implements IMeterRest {
 
     @Override
     public void createClient(MeterRequestDto dto) {
-        Meter meter = converter.convertRequestDtoMeter(dto);
+        MeterReading meter = converter.convertRequestDtoMeter(dto);
         service.create(meter);
     }
 

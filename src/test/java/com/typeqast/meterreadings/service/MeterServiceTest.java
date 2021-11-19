@@ -1,7 +1,7 @@
 package com.typeqast.meterreadings.service;
 
 import com.typeqast.meterreadings.MeterReadingsApplication;
-import com.typeqast.meterreadings.model.Meter;
+import com.typeqast.meterreadings.model.MeterReading;
 import com.typeqast.meterreadings.repository.MeterRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -42,7 +42,7 @@ class MeterServiceTest {
 
     @Test
     void given_RequestForClientSent_When_MeterReadingPerYearRequested_Then_ReturnYearAndMonthlyEnergyConsumptions() {
-        Set<Meter> yearlyMeterReadings = getYearlyMeterReadings();
+        Set<MeterReading> yearlyMeterReadings = getYearlyMeterReadings();
         when(meterRepository.getAllByClientIdAndYear(client, year)).thenReturn(yearlyMeterReadings);
         Map<String, Short> expectedResult = getExpectedResultForMonthlyReadings();
         assertThat(meterService.meterReadingPerYear(client, year)).isEqualTo(expectedResult);
@@ -51,16 +51,16 @@ class MeterServiceTest {
     @Test
     void given_RequestForClientSent_When_MeterReadingPerYearAndMonthRequested_Then_ReturnYearMonthlyAndEnergyConsumption() {
         String month = "September";
-        Meter meter = new Meter(month, year, 21, client);
+        MeterReading meter = new MeterReading(month, year, 21, client);
         when(meterRepository.getByClientIdAndYearAndMonth(client, year, month)).thenReturn(meter);
         Map<String, Short> expectedResult = getExpectedResultForOneMonthReading();
         assertThat(meterService.meterReadingPerYearAndMonth(client, year, month)).isEqualTo(expectedResult);
     }
 
-    private Set<Meter> getYearlyMeterReadings() {
-        Meter meter1 = new Meter("January", year, 2, client);
-        Meter meter2 = new Meter("February", year, 5, client);
-        Meter meter3 = new Meter("March", year, 7, client);
+    private Set<MeterReading> getYearlyMeterReadings() {
+        MeterReading meter1 = new MeterReading("January", year, 2, client);
+        MeterReading meter2 = new MeterReading("February", year, 5, client);
+        MeterReading meter3 = new MeterReading("March", year, 7, client);
         return Set.of(meter1, meter2, meter3);
     }
 

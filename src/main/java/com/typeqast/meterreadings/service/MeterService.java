@@ -1,7 +1,7 @@
 package com.typeqast.meterreadings.service;
 
 import com.typeqast.meterreadings.exception.InvalidMonthFormatException;
-import com.typeqast.meterreadings.model.Meter;
+import com.typeqast.meterreadings.model.MeterReading;
 import com.typeqast.meterreadings.repository.MeterRepository;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +18,7 @@ public class MeterService {
         this.meterRepository = meterRepository;
     }
 
-    public void create(Meter meter) {
+    public void create(MeterReading meter) {
         checkIfValidMonthProvided(meter.getMonth());
         meterRepository.save(meter);
     }
@@ -28,12 +28,12 @@ public class MeterService {
     }
 
     public Map<String, Short> meterReadingPerYear(Long clientId, Short year) {
-        Set<Meter> meters = meterRepository.getAllByClientIdAndYear(clientId, year);
+        Set<MeterReading> meters = meterRepository.getAllByClientIdAndYear(clientId, year);
         return convertReadingPerYear(year, meters);
     }
 
     public Map<String, Short> meterReadingPerYearAndMonth(Long clientId, Short year, String month) {
-        Meter meter = meterRepository.getByClientIdAndYearAndMonth(clientId, year, month);
+        MeterReading meter = meterRepository.getByClientIdAndYearAndMonth(clientId, year, month);
         return getMap(meter);
     }
 
@@ -45,18 +45,18 @@ public class MeterService {
         }
     }
 
-    private Map<String, Short> convertReadingPerYear(Short year, Set<Meter> meterSet) {
+    private Map<String, Short> convertReadingPerYear(Short year, Set<MeterReading> meterSet) {
         Map<String, Short> map = new LinkedHashMap<>();
         map.put("year", year);
 
-        for (Meter meter : meterSet) {
+        for (MeterReading meter : meterSet) {
             map.put(meter.getMonth(), Short.valueOf(meter.getEnergyConsumptionKwH().toString()));
         }
 
         return map;
     }
 
-    private Map<String, Short> getMap(Meter meter) {
+    private Map<String, Short> getMap(MeterReading meter) {
         Map<String, Short> map = new LinkedHashMap<>();
         map.put("year", meter.getYear());
         map.put(meter.getMonth(), Short.valueOf(meter.getEnergyConsumptionKwH().toString()));

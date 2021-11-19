@@ -15,7 +15,7 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Meter {
+public class MeterReading {
     @Id
     private String month;
 
