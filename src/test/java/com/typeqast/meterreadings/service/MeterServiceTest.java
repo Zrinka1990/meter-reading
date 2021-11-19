@@ -22,7 +22,7 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 @ContextConfiguration(classes = {MeterReadingsApplication.class})
 class MeterServiceTest {
-    private MeterService meterService;
+    private MeterReadingFetcher meterService;
     private final Long client = 1L;
     private final Short year = (short) 2018;
 
@@ -31,7 +31,7 @@ class MeterServiceTest {
 
     @BeforeEach
     void setUp() {
-        meterService = new MeterService(meterRepository);
+        meterService = new MeterReadingFetcher(meterRepository);
     }
 
     @Test

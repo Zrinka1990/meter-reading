@@ -11,10 +11,10 @@ import java.util.Map;
 import java.util.Set;
 
 @Service
-public class MeterService {
+public class MeterReadingFetcher {
     private final MeterRepository meterRepository;
 
-    public MeterService(MeterRepository meterRepository) {
+    public MeterReadingFetcher(MeterRepository meterRepository) {
         this.meterRepository = meterRepository;
     }
 

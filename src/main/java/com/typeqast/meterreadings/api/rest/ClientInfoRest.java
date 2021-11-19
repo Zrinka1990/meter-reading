@@ -22,6 +22,6 @@ public class ClientInfoRest implements IClientInfoRest {
     @Override
     public void createClient(ClientInfoRequestDto dto) {
         ClientInfo client = clientInfoDtoConverter.convertClientInfoRequestDtoToClientInfo(dto);
-        clientService.createClient(client);
+        clientService.saveClient(client);
     }
 }

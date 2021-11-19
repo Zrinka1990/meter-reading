@@ -15,7 +15,7 @@ public class ClientService {
         this.clientInfoRepository = clientInfoRepository;
     }
 
-    public void createClient(ClientInfo client) throws ClientWIthSameAddressAlreadyExistsException {
+    public void saveClient(ClientInfo client) throws ClientWIthSameAddressAlreadyExistsException {
         try {
             clientInfoRepository.save(client);
         } catch (RuntimeException e) {
