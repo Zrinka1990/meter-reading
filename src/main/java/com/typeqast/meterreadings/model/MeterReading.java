@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Entity
 @Embeddable
 @Table(name = "meter")
-@IdClass(MonthYearId.class)
+@IdClass(MeterReadingPrimaryKey.class)
 @Getter
 @Setter
 @NoArgsConstructor
@@ -24,5 +24,6 @@ public class MeterReading {
 
     private Integer energyConsumptionKwH;
 
+    @Id
     private Long clientId;
 }
