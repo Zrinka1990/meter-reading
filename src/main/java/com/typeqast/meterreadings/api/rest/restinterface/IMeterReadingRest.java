@@ -11,8 +11,8 @@ public interface IMeterReadingRest {
     @PostMapping("/create")
     void createMeterReading(@RequestBody MeterRequestDto dto);
 
-//    @PostMapping("/delete")
-//    void deleteMeterReading(@RequestBody DeleteRequestDto dto);
+    @PostMapping("/delete")
+    void deleteMeterReading(@RequestBody DeleteRequestDto dto);
 
     @GetMapping("/year-aggregate")
     Integer getYearlyMeterReadingAggregate(

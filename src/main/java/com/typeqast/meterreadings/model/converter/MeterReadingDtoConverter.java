@@ -15,12 +15,13 @@ public class MeterReadingDtoConverter {
                 dto.getEnergyConsumptionKwH(),
                 dto.getClientId());
     }
-//
-//    public MeterReadingPrimaryKey meterReadingPrimaryKey(DeleteRequestDto dto) {
-//        return new MeterReadingPrimaryKey(
-//                dto.getMonth(),
-//                dto.getYear(),
-//                dto.getClientId()
-//        );
-//    }
+
+    public MeterReadingPrimaryKey meterReadingPrimaryKey(DeleteRequestDto dto) {
+        MeterReadingPrimaryKey pk = new MeterReadingPrimaryKey();
+            pk.setMonth(dto.getMonth());
+            pk.setYear(dto.getYear());
+            pk.setClientId(dto.getClientId());
+
+        return pk;
+    }
 }

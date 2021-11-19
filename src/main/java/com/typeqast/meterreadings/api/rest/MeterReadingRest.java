@@ -29,11 +29,11 @@ public class MeterReadingRest implements IMeterReadingRest {
         service.create(meter);
     }
 
-//    @Override
-//    public void deleteMeterReading(DeleteRequestDto dto) {
-//        MeterReadingPrimaryKey pk = converter.meterReadingPrimaryKey(dto);
-//        service.delete(pk);
-//    }
+    @Override
+    public void deleteMeterReading(DeleteRequestDto dto) {
+        MeterReadingPrimaryKey pk = converter.meterReadingPrimaryKey(dto);
+        service.delete(pk);
+    }
 
     @Override
     public Integer getYearlyMeterReadingAggregate(Long clientId, Short year) {
