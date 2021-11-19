@@ -1,9 +1,11 @@
 package com.typeqast.meterreadings.service;
 
+import com.typeqast.meterreadings.exception.InvalidMonthFormatException;
 import com.typeqast.meterreadings.model.Meter;
 import com.typeqast.meterreadings.repository.MeterRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.Month;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
@@ -17,6 +19,7 @@ public class MeterService {
     }
 
     public void create(Meter meter) {
+        checkIfValidMonthProvided(meter.getMonth());
         meterRepository.save(meter);
     }
 
@@ -32,6 +35,14 @@ public class MeterService {
     public Map<String, Short> meterReadingPerYearAndMonth(String client, Short year, String month) {
         Meter meter = meterRepository.getByClientAndYearAndMonth(client, year, month);
         return getMap(meter);
+    }
+
+    private void checkIfValidMonthProvided(String month) {
+        try {
+            Month.valueOf(month.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            throw new InvalidMonthFormatException(month);
+        }
     }
 
     private Map<String, Short> convertReadingPerYear(Short year, Set<Meter> meterSet) {

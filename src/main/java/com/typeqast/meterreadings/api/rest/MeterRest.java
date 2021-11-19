@@ -28,8 +28,7 @@ public class MeterRest implements IMeterRest{
 
     @Override
     public Integer getYearAggregate(String client, Short year) {
-        Integer i = service.getTotalEnergyConsumptionForYear(client, year);
-        return i;
+        return service.getTotalEnergyConsumptionForYear(client, year);
     }
 
     @Override

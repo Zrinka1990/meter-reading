@@ -7,8 +7,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class MeterReadingDtoConverter {
     public Meter convertRequestDtoMeter(MeterRequestDto dto) {
-        return new Meter(dto.getMonth(),
+        return new Meter(
+                dto.getMonth(),
                 dto.getYear(),
-                dto.getEnergyConsumptionKwH(), dto.getClient());
+                dto.getEnergyConsumptionKwH(),
+                dto.getClient());
     }
 }

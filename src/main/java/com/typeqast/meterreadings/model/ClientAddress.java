@@ -11,6 +11,6 @@ public class ClientAddress {
     public String country;
 
     public String getFullAddress() {
-        return String.format("%s %s, %s, %s", street, number, city, city);
+        return String.format("%s %s, %s, %s", street, number, city, country);
     }
 }
