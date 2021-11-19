@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class MeterRequestDto {
-    private String Client;
+    private Long clientId;
     private String month;
     private Short year;
     private Integer energyConsumptionKwH;

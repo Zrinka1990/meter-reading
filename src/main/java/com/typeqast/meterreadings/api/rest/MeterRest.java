@@ -1,5 +1,6 @@
 package com.typeqast.meterreadings.api.rest;
 
+import com.typeqast.meterreadings.api.rest.restinterface.IMeterRest;
 import com.typeqast.meterreadings.dto.MeterRequestDto;
 import com.typeqast.meterreadings.model.Meter;
 import com.typeqast.meterreadings.model.converter.MeterReadingDtoConverter;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Map;
 
 @RestController
-public class MeterRest implements IMeterRest{
+public class MeterRest implements IMeterRest {
     private final MeterReadingDtoConverter converter;
     private final MeterService service;
 
@@ -27,17 +28,17 @@ public class MeterRest implements IMeterRest{
     }
 
     @Override
-    public Integer getYearAggregate(String client, Short year) {
-        return service.getTotalEnergyConsumptionForYear(client, year);
+    public Integer getYearAggregate(Long clientId, Short year) {
+        return service.getTotalEnergyConsumptionForYear(clientId, year);
     }
 
     @Override
-    public Map<String, Short> getReadingsPerYear(String client, Short year) {
-        return service.meterReadingPerYear(client, year);
+    public Map<String, Short> getReadingsPerYear(Long clientId, Short year) {
+        return service.meterReadingPerYear(clientId, year);
     }
 
     @Override
-    public Map<String, Short> getReadingsPerMonthAndYear(String client, Short year, String month) {
-        return service.meterReadingPerYearAndMonth(client, year, month);
+    public Map<String, Short> getReadingsPerMonthAndYear(Long clientId, Short year, String month) {
+        return service.meterReadingPerYearAndMonth(clientId, year, month);
     }
 }

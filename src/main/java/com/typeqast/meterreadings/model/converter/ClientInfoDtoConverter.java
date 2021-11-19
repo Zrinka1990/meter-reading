@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public class ClientInfoDtoConverter {
     public ClientInfo convertClientInfoRequestDtoToClientInfo(ClientInfoRequestDto dto) {
         ClientInfo client = new ClientInfo();
-        client.setClient(dto.getClient());
+        client.setClientName(dto.getClientName());
         client.setAddress(createAddressFromDto(dto).getFullAddress());
 
         return client;

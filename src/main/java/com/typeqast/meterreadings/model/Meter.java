@@ -16,8 +16,6 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Meter {
-//    https://vladmihalcea.com/java-time-year-month-jpa-hibernate/
-
     @Id
     private String month;
 
@@ -26,5 +24,5 @@ public class Meter {
 
     private Integer energyConsumptionKwH;
 
-    private String client;
+    private Long clientId;
 }

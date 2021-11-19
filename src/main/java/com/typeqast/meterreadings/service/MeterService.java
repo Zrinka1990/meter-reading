@@ -23,17 +23,17 @@ public class MeterService {
         meterRepository.save(meter);
     }
 
-    public Integer getTotalEnergyConsumptionForYear(String client, Short year) {
-        return meterRepository.getEnergySumForCustomer(client, year);
+    public Integer getTotalEnergyConsumptionForYear(Long clientId, Short year) {
+        return meterRepository.getEnergySumForCustomer(clientId, year);
     }
 
-    public Map<String, Short> meterReadingPerYear(String client, Short year) {
-        Set<Meter> meters = meterRepository.getAllByClientAndYear(client, year);
+    public Map<String, Short> meterReadingPerYear(Long clientId, Short year) {
+        Set<Meter> meters = meterRepository.getAllByClientIdAndYear(clientId, year);
         return convertReadingPerYear(year, meters);
     }
 
-    public Map<String, Short> meterReadingPerYearAndMonth(String client, Short year, String month) {
-        Meter meter = meterRepository.getByClientAndYearAndMonth(client, year, month);
+    public Map<String, Short> meterReadingPerYearAndMonth(Long clientId, Short year, String month) {
+        Meter meter = meterRepository.getByClientIdAndYearAndMonth(clientId, year, month);
         return getMap(meter);
     }
 

@@ -1,5 +1,6 @@
 package com.typeqast.meterreadings.api.rest;
 
+import com.typeqast.meterreadings.api.rest.restinterface.IClientInfoRest;
 import com.typeqast.meterreadings.dto.ClientInfoRequestDto;
 import com.typeqast.meterreadings.model.ClientInfo;
 import com.typeqast.meterreadings.model.converter.ClientInfoDtoConverter;

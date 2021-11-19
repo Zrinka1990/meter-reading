@@ -14,14 +14,16 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class ClientInfo {
     @Id
-    private String client;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long clientId;
+
+    private String clientName;
 
     @Column(unique=true)
     private String address;
 
-    @OneToMany(mappedBy = "client")
+    @OneToMany(mappedBy = "clientId")
     private Set<Meter> meter;
 }

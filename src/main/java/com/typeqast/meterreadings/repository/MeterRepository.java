@@ -10,10 +10,10 @@ import java.util.Set;
 @Repository
 public interface MeterRepository extends CrudRepository<Meter, String> {
     @Query("select sum(m.energyConsumptionKwH) from Meter  m " +
-            "where m.client = :client and m.year = :year")
-    Integer getEnergySumForCustomer(String client, Short year);
+            "where m.clientId = :clientId and m.year = :year")
+    Integer getEnergySumForCustomer(Long clientId, Short year);
 
-    Set<Meter> getAllByClientAndYear(String client, Short year);
+    Set<Meter> getAllByClientIdAndYear(Long clientId, Short year);
 
-    Meter getByClientAndYearAndMonth(String client, Short year, String Month);
+    Meter getByClientIdAndYearAndMonth(Long clientId, Short year, String Month);
 }

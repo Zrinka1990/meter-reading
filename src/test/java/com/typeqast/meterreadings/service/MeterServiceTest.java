@@ -23,8 +23,8 @@ import static org.mockito.Mockito.when;
 @ContextConfiguration(classes = {MeterReadingsApplication.class})
 class MeterServiceTest {
     private MeterService meterService;
-    private String client = "clientA";
-    private Short year = (short) 2018;
+    private final Long client = 1L;
+    private final Short year = (short) 2018;
 
     @Mock
     private MeterRepository meterRepository;
@@ -43,7 +43,7 @@ class MeterServiceTest {
     @Test
     void given_RequestForClientSent_When_MeterReadingPerYearRequested_Then_ReturnYearAndMonthlyEnergyConsumptions() {
         Set<Meter> yearlyMeterReadings = getYearlyMeterReadings();
-        when(meterRepository.getAllByClientAndYear(client, year)).thenReturn(yearlyMeterReadings);
+        when(meterRepository.getAllByClientIdAndYear(client, year)).thenReturn(yearlyMeterReadings);
         Map<String, Short> expectedResult = getExpectedResultForMonthlyReadings();
         assertThat(meterService.meterReadingPerYear(client, year)).isEqualTo(expectedResult);
     }
@@ -52,7 +52,7 @@ class MeterServiceTest {
     void given_RequestForClientSent_When_MeterReadingPerYearAndMonthRequested_Then_ReturnYearMonthlyAndEnergyConsumption() {
         String month = "September";
         Meter meter = new Meter(month, year, 21, client);
-        when(meterRepository.getByClientAndYearAndMonth(client, year, month)).thenReturn(meter);
+        when(meterRepository.getByClientIdAndYearAndMonth(client, year, month)).thenReturn(meter);
         Map<String, Short> expectedResult = getExpectedResultForOneMonthReading();
         assertThat(meterService.meterReadingPerYearAndMonth(client, year, month)).isEqualTo(expectedResult);
     }
@@ -79,5 +79,4 @@ class MeterServiceTest {
         expectedResult.put("September", (short) 21);
         return expectedResult;
     }
-//
 }

@@ -11,6 +11,6 @@ public class MeterReadingDtoConverter {
                 dto.getMonth(),
                 dto.getYear(),
                 dto.getEnergyConsumptionKwH(),
-                dto.getClient());
+                dto.getClientId());
     }
 }

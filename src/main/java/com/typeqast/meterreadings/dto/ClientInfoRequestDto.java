@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class ClientInfoRequestDto {
-    private String client;
+    private String clientName;
     private String street;
     public String number;
     public String city;

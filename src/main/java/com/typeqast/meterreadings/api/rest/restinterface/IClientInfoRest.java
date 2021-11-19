@@ -1,4 +1,4 @@
-package com.typeqast.meterreadings.api.rest;
+package com.typeqast.meterreadings.api.rest.restinterface;
 
 import com.typeqast.meterreadings.dto.ClientInfoRequestDto;
 import org.springframework.web.bind.annotation.PostMapping;
